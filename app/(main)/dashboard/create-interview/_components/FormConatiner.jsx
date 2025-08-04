@@ -12,7 +12,7 @@ import {
 import { InterviewType } from '@/services/Constonts'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
-function FormConatiner({onHandleInputChanges}) {
+function FormConatiner({onHandleInputChanges , GoToNext }) {
     const [interviewType,setInterviewType]=useState([]);
     useEffect(()=>{
         if(interviewType){
@@ -72,7 +72,7 @@ function FormConatiner({onHandleInputChanges}) {
             </div>
       </div>
 
-      <div className='mt-7 flex justify-end '>
+      <div className='mt-7 flex justify-end ' onClick={()=>GoToNext()}>
          <Button> Generate Questions <ArrowRight /></Button>
       </div>
      

@@ -5,19 +5,29 @@ import { ArrowLeft } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { Progress } from "@/components/ui/progress"
 import FormConatiner from './_components/FormConatiner'
+import QuestionsList from './_components/QuestionsList'
+import { toast } from 'sonner'
 function CreateInterView() {
     const router = useRouter();
     const[step,setStep]=useState(1);
-    const[formData,setFormData] = useState();
+    const[formData,setFormData] = useState({});
 
     const onHandleInputChanges = (field,value) =>{
     setFormData(prev=>({
       ...prev,
       [field]:value
     }))
-    console.log("formdta",formData);
-    
+   
+   }
+
+   const onGoToNext = () =>{
+    if(!formData?.jobPosition || !formData?.jobdescription ||  !formData?.duration || !formData?.type){
+      toast('Please enter all detials');
+      return ;
     }
+    setStep(step+1);
+   }
+
   return (
     <div>
           <WelcomeContainer />
@@ -28,7 +38,10 @@ function CreateInterView() {
                                
                 </div>
                  <Progress value={step * 33.33} className='my-5' />    
-                 <FormConatiner  onHandleInputChanges={onHandleInputChanges} />
+                { step ==1 ? <FormConatiner  onHandleInputChanges={onHandleInputChanges} 
+                GoToNext ={()=>onGoToNext()}/> : step ==2 ?
+                 <QuestionsList formData={formData}/> : null }
+                 
         </div>
     </div>
     
