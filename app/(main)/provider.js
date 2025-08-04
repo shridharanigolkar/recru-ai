@@ -6,11 +6,12 @@ import { AppSidebar } from './_components/AppSidebar'
 function DashboardProvider({ children }) {
   return (
     <SidebarProvider>
-      <div className="flex">
+      <div className='flex w-full'>
         <AppSidebar />
          <SidebarTrigger/>
-          {children}
-        
+         <div className='w-full'>
+         {children}
+         </div>
       </div>
     </SidebarProvider>
   );
@@ -18,3 +19,6 @@ function DashboardProvider({ children }) {
 
 
 export default DashboardProvider
+
+
+

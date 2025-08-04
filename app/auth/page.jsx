@@ -19,7 +19,7 @@ const signInWithGoogle = async () => {
   return (
     <div className='flex flex-col items-center justify-center h-screen'>
       <div className='flex flex-col items-center border rounded-2xl p-8'>
-        <Image src ={'/logo.jpeg'} alt ='logo' 
+        <Image src ={'/image.png'} alt ='logo' 
         width={100}
         height={100}
         className='w-[180px]'/>
