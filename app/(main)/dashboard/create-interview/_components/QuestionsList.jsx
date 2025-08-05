@@ -51,16 +51,22 @@ import { Loader2Icon } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import axios from 'axios';
+import { Button } from '@/components/ui/button';
+import QuestionListConatiner from './QuestionListConatiner';
+import { useUser } from '@/app/Provider';
+import { v4 as uuidv4 } from 'uuid';
+import { supabase } from '@/services/supabaseClient';
 
 function QuestionsList({ formData }) {
   const [loading, setLoading] = useState(true);
-  const [questions, setQuestions] = useState([]);
-
+  const [questionList, setQuestions] = useState([]);
+ const{user} = useUser();
   useEffect(() => {
     if (formData) {
       generateQuestions();
     }
   }, [formData]);
+
 
   const generateQuestions = async () => {
     setLoading(true);
@@ -68,8 +74,26 @@ function QuestionsList({ formData }) {
       const result = await axios.post('/api/ai-model', {
         ...formData,
       });
-      console.log(result.data);
-      setQuestions(result.data.questions || []); // assuming API returns an array
+      // console.log(result.data);
+      // const Content = result.data.content;
+      // const FINAL_CONTENT = Content.replace('"```json','').replace('```','');
+
+      // setQuestions(JSON.parse(FINAL_CONTENT)); // assuming API returns an array
+
+      const Content = result.data.content;
+      const FINAL_CONTENT = Content.replace(/```json|```/g, '').trim();
+
+      try {
+       const parsed = JSON.parse(FINAL_CONTENT);
+      const questionsArray = parsed?.interviewQuestions ?? [];
+
+      setQuestions(Array.isArray(questionsArray) ? questionsArray : []);
+        console.log(questionsArray);
+      } catch (err) {
+        toast.error("Couldn't parse questions from AI response.");
+        console.error('JSON parsing error:', err);
+      }
+
     } catch (e) {
       toast.error('Server error. Please try again.');
     } finally {
@@ -77,6 +101,28 @@ function QuestionsList({ formData }) {
     }
   };
 
+
+  const onFinish = async ()=>{
+   const interview_id = uuidv4();
+    const { data, error } = await supabase
+      .from('interviews')
+      .insert([
+        { 
+          ...formData,
+          questionList:questionList,
+          userEmail : user?.email,
+          interview_id : interview_id
+
+         },
+      ])
+      .select()
+      console.log(data);
+      
+          
+  } 
+
+
+  
   return (
     <div>
       {loading ? (
@@ -91,12 +137,24 @@ function QuestionsList({ formData }) {
         <div className="mt-4">
           <h3 className="font-bold mb-2">Generated Questions:</h3>
           <ul className="list-disc ml-6">
-            {questions.map((q, idx) => (
-              <li key={idx}>{q}</li>
-            ))}
+            
           </ul>
         </div>
       )}
+
+      {questionList?.length > 0 &&
+
+      <div>
+         <QuestionListConatiner questionList={questionList} />
+        
+      </div>
+         
+      }
+      <div className='flex justify-end mt-10'>
+        <Button onClick={()=>onFinish()}>Finish</Button>
+      </div>
+
+
     </div>
   );
 }

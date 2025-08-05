@@ -45,7 +45,7 @@ export async function POST(req) {
   try {
     const { jobPosition, jobdescription, duration, type } = await req.json();
 
-    // Validate required fields
+
     if (!jobPosition || !jobdescription || !duration || !type) {
       return NextResponse.json(
         { error: "Missing required fields." },
@@ -59,7 +59,6 @@ export async function POST(req) {
       .replace("{{duration}}", duration)
       .replace("{{type}}", type);
 
-    // Setup DeepSeek-compatible OpenAI client
     const openai = new OpenAI({
     apiKey: process.env.GEMINI_API_KEY,
     baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/"
@@ -71,6 +70,7 @@ const response = await openai.chat.completions.create({
         { role: "user", content: FINAL_PROMPT },
 
     ],
+   
 });
 
 console.log(response.choices[0].message);
