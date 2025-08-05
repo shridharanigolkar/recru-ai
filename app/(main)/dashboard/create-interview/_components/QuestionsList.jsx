@@ -47,7 +47,7 @@
 
 
 'use client';
-import { Loader2Icon } from 'lucide-react';
+import { Loader2, Loader2Icon } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import axios from 'axios';
@@ -57,10 +57,11 @@ import { useUser } from '@/app/Provider';
 import { v4 as uuidv4 } from 'uuid';
 import { supabase } from '@/services/supabaseClient';
 
-function QuestionsList({ formData }) {
+function QuestionsList({ formData, onCreateLink }) {
   const [loading, setLoading] = useState(true);
   const [questionList, setQuestions] = useState([]);
  const{user} = useUser();
+ const[saveLoading,setSaveLoading] = useState(false);
   useEffect(() => {
     if (formData) {
       generateQuestions();
@@ -103,6 +104,7 @@ function QuestionsList({ formData }) {
 
 
   const onFinish = async ()=>{
+    setLoading(true);
    const interview_id = uuidv4();
     const { data, error } = await supabase
       .from('interviews')
@@ -116,13 +118,13 @@ function QuestionsList({ formData }) {
          },
       ])
       .select()
-      console.log(data);
-      
-          
+      setLoading(false);
+      console.log(data);    
+      onCreateLink(interview_id)   
   } 
 
 
-  
+
   return (
     <div>
       {loading ? (
@@ -151,7 +153,9 @@ function QuestionsList({ formData }) {
          
       }
       <div className='flex justify-end mt-10'>
-        <Button onClick={()=>onFinish()}>Finish</Button>
+        <Button onClick={()=>onFinish()} disabled={saveLoading}>
+          {saveLoading && <Loader2  className='animated-spin'/>}
+          Create Interview Link</Button>
       </div>
 
 

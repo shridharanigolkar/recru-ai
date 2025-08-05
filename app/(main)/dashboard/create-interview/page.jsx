@@ -7,10 +7,12 @@ import { Progress } from "@/components/ui/progress"
 import FormConatiner from './_components/FormConatiner'
 import QuestionsList from './_components/QuestionsList'
 import { toast } from 'sonner'
+import InterviewLink from './_components/InterviewLink'
 function CreateInterView() {
     const router = useRouter();
     const[step,setStep]=useState(1);
     const[formData,setFormData] = useState({});
+    const[interviewId,setInterviewId] = useState();
 
     const onHandleInputChanges = (field,value) =>{
     setFormData(prev=>({
@@ -28,6 +30,11 @@ function CreateInterView() {
     setStep(step+1);
    }
 
+   const  onCreateLink =(interview_id) => {
+     setInterviewId(interview_id);
+     setStep(step+1);
+   }
+
   return (
     <div>
           <WelcomeContainer />
@@ -40,7 +47,11 @@ function CreateInterView() {
                  <Progress value={step * 33.33} className='my-5' />    
                 { step ==1 ? <FormConatiner  onHandleInputChanges={onHandleInputChanges} 
                 GoToNext ={()=>onGoToNext()}/> : step ==2 ?
-                 <QuestionsList formData={formData}/> : null }
+                 <QuestionsList formData={formData} onCreateLink={(interview_id)=> onCreateLink(interview_id)}/> 
+                 : step ==3 ? <InterviewLink  interview_id={interviewId}
+                  formData={formData}
+                 /> :
+                  null }
                  
         </div>
     </div>
