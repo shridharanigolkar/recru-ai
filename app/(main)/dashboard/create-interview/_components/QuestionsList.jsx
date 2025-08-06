@@ -89,7 +89,7 @@ function QuestionsList({ formData, onCreateLink }) {
       const questionsArray = parsed?.interviewQuestions ?? [];
 
       setQuestions(Array.isArray(questionsArray) ? questionsArray : []);
-        console.log(questionsArray);
+        // console.log(questionsArray);
       } catch (err) {
         toast.error("Couldn't parse questions from AI response.");
         console.error('JSON parsing error:', err);

@@ -18,6 +18,9 @@ function InterviewLink({interview_id,formData}) {
       await navigator.clipboard.writeText(url);
       toast('Link copied')
     }
+
+    console.log(formData);
+    
   return (
     <div className='flex flex-col items-center w-full justify-center mt-10'>
       <Image src = {'/check.png'} alt='check'
@@ -37,8 +40,8 @@ function InterviewLink({interview_id,formData}) {
                </div>
                <hr className='my-7'/>
                <div className='flex gap-5'>
-                <h2 className='text-sm text-gray-500 flex gap-2 items-center'><Clock className='h-4 w-4' /> 30 Min{formData?.duration}</h2>
-                <h2 className='text-sm text-gray-500 flex gap-2 items-center'><List className='h-4 w-4' /> 10 Questions {formData?.duration}</h2>
+                <h2 className='text-sm text-gray-500 flex gap-2 items-center'><Clock className='h-4 w-4' /> {formData?.duration} Min</h2>
+                <h2 className='text-sm text-gray-500 flex gap-2 items-center'><List className='h-4 w-4' /> {formData?.questionList?.length}</h2>
                </div>
                <div className='mt-7 bg-white p-5 rounded-lg w-full'>
                 <h2 className='font-bold'>Share Via</h2>
