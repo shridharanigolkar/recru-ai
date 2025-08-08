@@ -16,9 +16,12 @@ function Interview() {
     const {interview_id} = useParams();
    const[interviewData,setInterviewData]=useState([]);
    const [userName,setUserName]=useState();
+   const[userEmail,setUserEmail]=useState();
    const[loading,setLoading]=useState(false);
     const{interviewInfo,setInterviewInfo}=useContext(InterviewDataContext)
    const router = useRouter();
+  
+
     useEffect(()=>{
         interview_id&&GetInterviewDetails();
     },[interview_id])
@@ -31,7 +34,7 @@ function Interview() {
                     .eq('interview_id',interview_id)
                     setInterviewData(interviews[0]);
             
-                    console.log(interviews[0]);
+                  
                       setLoading(false);
                     if(interviews?.length == 0){
                        toast('Incorect Interview Id');
@@ -49,9 +52,10 @@ function Interview() {
   .from('interviews')
   .select('*')
   .eq('interview_id',interview_id)
-   console.log(interviews[0]);
+  
    setInterviewInfo({
     userName:userName,
+    userEmail : userEmail,
     interviewData:interviews[0]
    });
    router.push('/interview/' + interview_id + '/start');
@@ -72,6 +76,10 @@ function Interview() {
                <div className='w-full '>
                  <h2> Enter Your Full Name</h2>
                  <Input placeholder='e.g John Smith' onChange={(event)=>setUserName(event.target.value)} />
+               </div>
+               <div className='w-full '>
+                 <h2> Enter Your Email</h2>
+                 <Input placeholder='e.g john@gmail.com' onChange={(event)=>setUserEmail(event.target.value)} />
                </div>
                <div className='p-3 bg-blue-100 flex gap-4 rounded-lg mt-4'>
                       <Info className='text-primary' />
