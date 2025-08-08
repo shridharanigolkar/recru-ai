@@ -387,6 +387,9 @@ import Image from 'next/image';
 import Vapi from '@vapi-ai/web';
 import AlertConfirmtaion from './_components/AlertConfirmtaion';
 import { toast } from 'sonner';
+import { supabase } from '@/services/supabaseClient';
+import { useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 function StartInterview() {
   const { interviewInfo } = useContext(InterviewDataContext);
@@ -395,7 +398,10 @@ function StartInterview() {
   const [remainingTime, setRemainingTime] = useState(0);
   const timerRef = useRef(null);
   const callStartedRef = useRef(false);
-
+//--------------------------------------
+  const{interview_id}=useParams();
+  const router = useRouter();
+//------------------------------------
   const [conversation, setConversation] = useState([]);
   const [feedback, setFeedback] = useState(null);
 
@@ -498,9 +504,47 @@ function StartInterview() {
           body: JSON.stringify({ conversation: cleanedConversation }),
         });
 
-        const data = await res.json();
-        console.log('🎯 Feedback:', data);
-        setFeedback(data.feedback);
+        const data1 = await res.json();
+        console.log('🎯 Feedback:', data1);
+        //setFeedback(data1.feedback);
+    //----------------------------------------
+try {
+  const cleanJSON = data1.raw.replace(/```json\n|```/g, '').trim();
+  const feedbackJSON = JSON.parse(cleanJSON);
+  const feedbackObject = feedbackJSON.feedback;
+
+  if (!feedbackObject) {
+    console.error('❌ Feedback missing in parsed JSON');
+    return;
+  }
+
+  setFeedback(feedbackObject);
+
+  const { data, error } = await supabase
+    .from('interview-feedback')
+    .insert([
+      {
+        userName: interviewInfo?.userName,
+        userEmail: interviewInfo?.userEmail,
+        interview_id: interview_id,
+        feedback: feedbackObject, // works if column type is jsonb
+        recommendation: false,
+      },
+    ])
+    .select();
+
+  if (error) {
+    console.error('❌ Supabase insert error:', error);
+  } else {
+    console.log('✅ Feedback saved:', data);
+    router.replace('/interview/' + interview_id + '/completed');
+  }
+
+} catch (err) {
+  console.error('❌ JSON parse failed:', err, data1.raw);
+}
+
+//---------------------------------------------------
         toast('✅ Feedback received');
       } catch (error) {
         console.error('❌ Error fetching feedback:', error);
