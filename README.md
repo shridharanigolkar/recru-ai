@@ -28,4 +28,6 @@ Recru AI is an intelligent platform designed to assist recruiters in conducting 
 ### Installation
 
 1. Install dependencies:
-npm install
+   ```bash
+   npm install
+  
