@@ -45,7 +45,7 @@ import { Button } from '@/components/ui/button'
 import { supabase } from '@/services/supabaseClient'
 
 function Login() {
-  /**Used to sign with google*/
+  
   const signInWithGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',

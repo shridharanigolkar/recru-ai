@@ -3,7 +3,7 @@ import "./globals.css";
 import Provider from "./Provider";
 import { Toaster } from "sonner"
 import { ThemeProvider } from "next-themes";
-
+import { ToastProvider } from "@/components/mysonner";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,8 +28,10 @@ export default function RootLayout({ children }) {
         
          <Provider>
           <div>
+               <ToastProvider>
                {children}
-               <Toaster />
+               //<Toaster />
+               </ToastProvider>
           </div>
        
         </Provider>
@@ -39,3 +41,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+

@@ -5,6 +5,7 @@ import { createClient } from "@supabase/supabase-js";
 import { Button } from "@/components/ui/button";
 import WelcomeContainer from "../dashboard/_components/WelcomeContainer";
 import { toast } from "sonner";
+import { useToast } from "@/components/mysonner";
 // Initialize Supabase client
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -15,7 +16,7 @@ export default function BillingPage() {
   const [credits, setCredits] = useState(0);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
-
+ const { addToast } = useToast();
   // Load PayPal SDK once
   useEffect(() => {
     const script = document.createElement("script");
@@ -104,7 +105,7 @@ export default function BillingPage() {
   }
 
   const setclick = () =>{
-    toast('Sorry you cannot do Payment now');
+    addToast('Sorry you cannot do Payment now');
   }
   return (
     <div className="p-8 max-w-6xl mx-auto">

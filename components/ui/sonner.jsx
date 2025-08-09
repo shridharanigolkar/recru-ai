@@ -15,7 +15,7 @@ const Toaster = ({
       style={
         {
           "--normal-bg": "var(--popover)",
-          "--normal-text": "var(--popover-foreground)",
+          "--normal-text": "red",
           "--normal-border": "var(--border)"
         }
       }
@@ -24,6 +24,8 @@ const Toaster = ({
 }
 
 export { Toaster }
+
+
 
 
 

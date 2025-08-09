@@ -8,11 +8,12 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/componen
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import Image from "next/image";
+import { useToast } from "@/components/mysonner";
 export default function SettingsPage() {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-
+  const { addToast } = useToast();
   useEffect(() => {
     async function fetchUser() {
       setLoading(true);
@@ -21,7 +22,7 @@ export default function SettingsPage() {
       const authUser = authData?.user;
 
       if (!authUser) {
-          toast('No user first login')
+          addToast('No user first login')
         router.push("/"); 
       
         return;

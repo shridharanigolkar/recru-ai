@@ -9,12 +9,14 @@ import QuestionsList from './_components/QuestionsList'
 import { toast, Toaster } from 'sonner'
 import InterviewLink from './_components/InterviewLink'
 import { useUser } from '@/app/Provider'
+import { useToast } from "@/components/mysonner";
 function CreateInterView() {
     const router = useRouter();
     const[step,setStep]=useState(1);
     const[formData,setFormData] = useState({});
     const[interviewId,setInterviewId] = useState();
    const{user} = useUser();
+   const { addToast } = useToast();
     const onHandleInputChanges = (field,value) =>{
     setFormData(prev=>({
       ...prev,
@@ -25,7 +27,8 @@ function CreateInterView() {
 
    const onGoToNext = () =>{
     if(user?.credits <=0){
-      toast('Please add credits')
+      //toast('Please add credits')
+      addToast('Please add credits')
       return ;
     }
     if(!formData?.jobPosition || !formData?.jobdescription ||  !formData?.duration || !formData?.type){

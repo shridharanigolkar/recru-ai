@@ -5,14 +5,15 @@ import { ArrowRight, Copy, Send } from 'lucide-react';
 import { toast } from 'sonner';
 import { Arrow } from '@radix-ui/react-select';
 import Link from 'next/link';
+import { useToast } from "@/components/mysonner";
 
 function InterviewCard({ interview ,  viewDetail =false}) {
   const formattedDate = moment(interview?.created_at).format('DD MMM YYYY');
   const url = process.env.NEXT_PUBLIC_HOST_URL + '/' + interview?.interview_id;
-
+const { addToast } = useToast();
   const copyLink = () => {
     navigator.clipboard.writeText(url);
-    toast('Link copied to clipboard!');
+    addToast('Link copied to clipboard!');
   };
 
   const onSend = () => {
