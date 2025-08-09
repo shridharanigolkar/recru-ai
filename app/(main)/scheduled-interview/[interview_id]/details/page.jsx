@@ -35,7 +35,7 @@ function InterviewDetail() {
   return (
     <div>
         <WelcomeContainer />
-        <div className='mt-5'>
+        <div className='mt-5 pl-5'>
           <h2 className='font-bold text-2xl'>Interview Detail</h2>
          {interviewDetail && (
                 <>

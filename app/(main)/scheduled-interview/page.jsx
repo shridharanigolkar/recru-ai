@@ -33,7 +33,7 @@ function Scheduledinterview() {
   return (
     <div>
       <WelcomeContainer />
-       <div className='mt-5'>
+       <div className='mt-5 pl-5'>
              <h2 className='font-bold text-xl'>
               Interview List With Candidate Feedback
              </h2>
@@ -50,8 +50,7 @@ function Scheduledinterview() {
         <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5  m-5 px-4'>
           {interviewList.map((interview, index) => (
             <InterviewCard interview={interview} key={index} 
-            
-            viewDetail={true}
+            v viewDetail={true}
             />
           ))}
         </div>

@@ -19,7 +19,7 @@ const signInWithGoogle = async () => {
   return (
     <div className='flex flex-col items-center justify-center h-screen'>
       <div className='flex flex-col items-center border rounded-2xl p-8'>
-        <Image src ={'/image.png'} alt ='logo' 
+        <Image src ={'/imagebg.png'} alt ='logo' 
         width={100}
         height={100}
         className='w-[180px]'/>
@@ -28,8 +28,8 @@ const signInWithGoogle = async () => {
             width={600}
             height={400}
             className='w-[400px] h-[250px] rounded-2xl'/>
-            <h2 className='text-2xl font-bold text-center mt-5'>Welcome to AiRecruiter</h2>
-            <p className='text-grey-500 text-center'>Sign In With Google Authentication</p>
+            <h2 className='text-2xl font-bold text-center mt-5'>Welcome to RecruAI</h2>
+            <p className='text-grey-500 text-center'>Sign In With Google Athentication</p>
             <Button onClick={signInWithGoogle} className='mt-7 w-full'>Login with Google</Button>
         </div>
       </div>

@@ -22,12 +22,10 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader className='flex items-center'>
-       <Image src ={'/image.png'} alt ='logo' 
+       <Image src ={'/imagebg.png'} alt ='logo' 
               width={100}
               height={100}
               className='w-[150px]'/>
-
-              <Button className='w-full mt-2'> <Plus/> Create New Interview</Button>
         </SidebarHeader>
       <SidebarContent>
         <SidebarGroup label="Main">

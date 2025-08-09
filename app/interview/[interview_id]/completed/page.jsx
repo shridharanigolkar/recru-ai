@@ -2,6 +2,7 @@ import React from 'react';
 import { Home, ArrowRight } from 'lucide-react';
 
 const InterviewComplete = () => {
+  
   return (
     <div className="bg-midnight text-white font-sans antialiased flex flex-col min-h-screen">
       {/* Main Content */}
@@ -29,13 +30,13 @@ const InterviewComplete = () => {
 
         {/* Subheading */}
         <p className="text-lg text-black text-center">
-          Thank you for participating in the Al-driven interview with Alcruiter
+          Thank you for participating in the Al-driven interview with AIRecruiter
         </p>
 
         {/* Image */}
         <div className="rounded-xl overflow-hidden shadow-lg">
           <img
-            src="https://media.istockphoto.com/id/1298405314/vector/job-interview.jpg?s=612x612&w=0&k=20&c=F3P4brlXN7S35fe73OrxrKs0-FMc3VoMSuv6I6VIcGg="
+            src="https://liveassets.ca/wp-content/uploads/2023/01/Complete-Interview-Preparation-Checklist-Live-Assets.png"
             alt="Interview Illustration"
             className="w-full h-auto object-cover max-w-4xl"
             style={{
@@ -97,17 +98,17 @@ const InterviewComplete = () => {
           </p>
         </div>
 
-        {/* Buttons */}
+        {/* Buttons 
         <div className="flex space-x-4">
           <button className="bg-midnightLightest text-gray-300 hover:text-white rounded-lg py-3 px-6 flex items-center space-x-2 transition duration-300 ease-in-out">
             <Home className="h-5 w-5 " />
             <span className='text-black'>Return to Homepage</span>
           </button>
-          <button className="bg-primary text-white rounded-lg py-3 px-6 flex items-center space-x-2 transition duration-300 ease-in-out">
+          {/* <button className="bg-primary text-white rounded-lg py-3 px-6 flex items-center space-x-2 transition duration-300 ease-in-out">
             <span>View Other Opportunities</span>
             <ArrowRight className="h-5 w-5" />
-          </button>
-        </div>
+          </button> 
+        </div> */}
       </main>
 
       {/* Footer 

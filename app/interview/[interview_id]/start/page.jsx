@@ -536,7 +536,7 @@ try {
   if (error) {
     console.error('❌ Supabase insert error:', error);
   } else {
-    console.log('✅ Feedback saved:', data);
+    //console.log('✅ Feedback saved:', data);
     router.replace('/interview/' + interview_id + '/completed');
   }
 
@@ -545,7 +545,7 @@ try {
 }
 
 //---------------------------------------------------
-        toast('✅ Feedback received');
+       // toast('✅ Feedback received');
       } catch (error) {
         console.error('❌ Error fetching feedback:', error);
         toast('❌ Failed to get feedback');

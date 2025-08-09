@@ -107,7 +107,7 @@ export default function BillingPage() {
       <WelcomeContainer/>
 
       {/* Billing */}
-      <div>
+      <div className="pl-5">
         <h2 className="text-xl font-semibold mb-2">Billing</h2>
         <p className="text-gray-500 mb-4">
           Manage your Payment and credits

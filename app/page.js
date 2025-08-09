@@ -8,7 +8,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       {/* Navbar */}
       <nav className="w-full bg-white shadow px-6 py-4 flex items-center justify-between">
-        <div className="text-2xl font-bold">AiRecruiter</div>
+        <div className="text-2xl font-bold">RecruAI</div>
         <Link href="/auth">
           <Button variant="default">Login / Register</Button>
         </Link>
@@ -30,7 +30,7 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Welcome to AiRecruiter
+            Welcome to RecruAI
           </h1>
           <p className="text-lg md:text-xl max-w-2xl mx-auto mb-6">
             Explore the best features of our platform with ease.
