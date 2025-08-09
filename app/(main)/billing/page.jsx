@@ -1,9 +1,10 @@
 "use client";
+import React from "react";
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { Button } from "@/components/ui/button";
 import WelcomeContainer from "../dashboard/_components/WelcomeContainer";
-
+import { toast } from "sonner";
 // Initialize Supabase client
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -102,6 +103,9 @@ export default function BillingPage() {
     return <div className="p-8">Loading...</div>;
   }
 
+  const setclick = () =>{
+    toast('Sorry you cannot do Payment now');
+  }
   return (
     <div className="p-8 max-w-6xl mx-auto">
       <WelcomeContainer/>
@@ -127,7 +131,7 @@ export default function BillingPage() {
                 </span>
               </div>
             </div>
-            <Button className="mt-4 w-full">+ Add More Credits</Button>
+            <Button onClick={()=>setclick()} className="mt-4 w-full">+ Add More Credits</Button>
           </div>
 
           {/* Purchase Credits */}
@@ -147,7 +151,7 @@ export default function BillingPage() {
                     <li key={i}>• {f}</li>
                   ))}
                 </ul>
-                <Button
+                <Button onClick={()=>setclick()}
                   //onClick={() => handlePurchase(plan)}
                   variant={plan.title === "Standard" ? "default" : "outline"}
                 >
@@ -226,4 +230,5 @@ export default function BillingPage() {
       .render(`#${containerId}`);
   }
 }
-import React from 'react'
+
+

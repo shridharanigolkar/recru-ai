@@ -65,7 +65,7 @@ function Interview() {
   return (
     <div className='px-10 md:px-28 lg:px-48 xl:px-80 mt-7 '>
          <div className='flex flex-col items-center justify-center border rounded-lg bg-white p-7 lg:px-33 xl:px-52 '>
-              <Image  src={'/image.png'} alt='logo' width={200} height={200}  className='w-[140px] mt-4'/>
+              <Image  src={'/imagebg1.png'} alt='logo' width={200} height={200}  className='w-[140px] mt-4'/>
              
               <h2 className='mt-3'>AI-Powered Interview Platform</h2>
                <Image  src={'/interview.png'} alt='interview' width={500} height={500}  className='w-[280px] my-6'/>
