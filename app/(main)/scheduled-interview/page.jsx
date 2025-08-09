@@ -5,12 +5,13 @@ import { supabase } from '@/services/supabaseClient';
 import { useUser } from '@/app/Provider';
 import { Button } from '@/components/ui/button';
 import { Video } from 'lucide-react';
-
+import { useRouter } from 'next/navigation';
 import InterviewCard from '../dashboard/_components/InterviewCard';
 function Scheduledinterview() {
   const { user } = useUser();
   const [interviewList, setInterviewList] = useState([]);
-
+   const router = useRouter();
+   
   useEffect(() => {
     if (user) {
       GetInterviewList();
@@ -42,7 +43,8 @@ function Scheduledinterview() {
         <div className='p-5 flex flex-col gap-3 items-center mt-5'>
           <Video className='h-10 w-10 text-primary' />
           <h2>You don't have any interview created</h2>
-          <Button>+ Create New Interview</Button>
+           <Button onClick={() => router.push('/dashboard/create-interview')} >+ Create New Interview</Button>
+         
         </div>
       ) : (
         <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5  m-5 px-4'>

@@ -6,14 +6,15 @@ import { useRouter } from 'next/navigation'
 import { Progress } from "@/components/ui/progress"
 import FormConatiner from './_components/FormConatiner'
 import QuestionsList from './_components/QuestionsList'
-import { toast } from 'sonner'
+import { toast, Toaster } from 'sonner'
 import InterviewLink from './_components/InterviewLink'
+import { useUser } from '@/app/Provider'
 function CreateInterView() {
     const router = useRouter();
     const[step,setStep]=useState(1);
     const[formData,setFormData] = useState({});
     const[interviewId,setInterviewId] = useState();
-
+   const{user} = useUser();
     const onHandleInputChanges = (field,value) =>{
     setFormData(prev=>({
       ...prev,
@@ -23,6 +24,10 @@ function CreateInterView() {
    }
 
    const onGoToNext = () =>{
+    if(user?.credits <=0){
+      toast('Please add credits')
+      return ;
+    }
     if(!formData?.jobPosition || !formData?.jobdescription ||  !formData?.duration || !formData?.type){
       toast('Please enter all detials');
       return ;

@@ -118,8 +118,18 @@ function QuestionsList({ formData, onCreateLink }) {
          },
       ])
       .select()
+
+      //update user credits
+      const userUpdate = await supabase
+        .from('Users')
+        .update({ credits: Number(user?.credits)-1 })
+        .eq('email', user?.email)
+        .select()
+        console.log(userUpdate);
+        
+        
       setLoading(false);
-      console.log(data);    
+      //console.log(data);    
       onCreateLink(interview_id)   
   } 
 

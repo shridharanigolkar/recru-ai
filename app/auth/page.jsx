@@ -9,7 +9,7 @@ const signInWithGoogle = async () => {
   const { error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
      options: {
-    redirectTo: 'http://localhost:3000/', // this forces a clean redirect
+    redirectTo: 'http://localhost:3000/dashboard', // this forces a clean redirect
   }
   });
   if (error) console.error('OAuth sign-in error:', error.message);

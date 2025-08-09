@@ -2,7 +2,7 @@
 import { UserDetailContext } from '@/context/UserDeatailContext'
 import { supabase } from '@/services/supabaseClient'
 import React, { useContext, useEffect, useState } from 'react'
-
+import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 function Provider({ children }) {
   const [user, setUser] = useState(null)
 
@@ -52,9 +52,11 @@ function Provider({ children }) {
   }, [])
 
   return (
+     <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID }}>
     <UserDetailContext.Provider value={{ user, setUser }}>
       {children}
     </UserDetailContext.Provider>
+    </PayPalScriptProvider>
   )
 }
 

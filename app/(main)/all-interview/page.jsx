@@ -8,10 +8,11 @@ import { supabase } from '@/services/supabaseClient';
 import InterviewCard from '../dashboard/_components/InterviewCard';
 import { toast } from 'sonner';
 import WelcomeContainer from '../dashboard/_components/WelcomeContainer';
+import { useRouter } from 'next/navigation';
 function AllInterview() {
   const [interviewList, setInterviewList] = useState([]);
   const { user } = useUser();
-
+  const router = useRouter();
   useEffect(() => {
     if (user) {
       GetInterviewList();
@@ -43,7 +44,8 @@ function AllInterview() {
         <div className='p-5 flex flex-col gap-3 items-center mt-5'>
           <Video className='h-10 w-10 text-primary' />
           <h2>You don't have any interview created</h2>
-          <Button>+ Create New Interview</Button>
+           <Button onClick={() => router.push('/dashboard/create-interview')} >+ Create New Interview</Button>
+         
         </div>
       ) : (
         <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5  m-5 px-4'>
