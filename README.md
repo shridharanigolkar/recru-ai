@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Recru AI
+
+Recru AI is an intelligent platform designed to assist recruiters in conducting AI-powered interviews for students. By leveraging advanced AI models and modern backend technology, Recru AI streamlines the recruitment process, making interviews more efficient and insightful.
+
+## Features
+
+- Conduct AI-driven interviews for students using the Gemini Pro model.
+- Manage interview data and candidate profiles seamlessly.
+- Real-time interview interaction powered by VAPI.
+- Secure and scalable database management with Supabase.
+
+## Tech Stack
+
+- **Next.js** — Frontend framework
+- **Supabase** — Backend database and authentication
+- **VAPI** — AI interview handling interface
+- **Gemini Pro Model** — AI model powering interviews
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (v14 or higher)
+- Git
+- Supabase account and project setup
+- VAPI credentials for AI interview integration
+
+### Installation
+
+1. Install dependencies:
 
 ```bash
+npm install
+Create a .env.local file in the root directory and add the following environment variables:
+
+ini
+Copy
+Edit
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+VAPI_API_KEY=your-vapi-api-key
+GEMINI_PRO_MODEL_KEY=your-gemini-pro-model-key
+Run the development server:
+
+bash
+Copy
+Edit
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open http://localhost:3000 to view the app.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Usage
+Register or log in as a recruiter.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Create or schedule AI-powered interviews.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Review student responses and interview analytics.
 
-## Learn More
+Contributing
+Contributions are welcome! Please open issues or submit pull requests for improvements and bug fixes.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+License
+This project is licensed under the MIT License.
