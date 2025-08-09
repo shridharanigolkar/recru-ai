@@ -1,41 +1,82 @@
+// "use client"
+// import React from 'react'
+// import Image from 'next/image'
+// import { Button } from '@/components/ui/button'
+// import { supabase } from '@/services/supabaseClient'
+// function Login() {
+// /**Used to sign with google*/
+// const signInWithGoogle = async () => {
+//   const { error } = await supabase.auth.signInWithOAuth({
+//     provider: 'google',
+//      options: {
+//     redirectTo: 'http://localhost:3000/dashboard', 
+//   }
+//   });
+//   if (error) console.error('OAuth sign-in error:', error.message);
+// };
+
+
+//   return (
+//     <div className='flex flex-col items-center justify-center h-screen'>
+//       <div className='flex flex-col items-center border rounded-2xl p-8'>
+//         <Image src ={'/imagebg.png'} alt ='logo' 
+//         width={100}
+//         height={100}
+//         className='w-[180px]'/>
+//         <div className='flex flex-col items-center '>
+//            <Image src ={'/login2.svg'} alt ='logo' 
+//             width={600}
+//             height={400}
+//             className='w-[400px] h-[250px] rounded-2xl'/>
+//             <h2 className='text-2xl font-bold text-center mt-5'>Welcome to RecruAI</h2>
+//             <p className='text-grey-500 text-center'>Sign In With Google Athentication</p>
+//             <Button onClick={signInWithGoogle} className='mt-7 w-full'>Login with Google</Button>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default Login
 "use client"
 import React from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { supabase } from '@/services/supabaseClient'
+
 function Login() {
-/**Used to sign with google*/
-const signInWithGoogle = async () => {
-  const { error } = await supabase.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: process.env.NEXT_PUBLIC_HOST_TEST_URL + '/dashboard',
-    },
-  });
-  if (error) console.error('OAuth sign-in error:', error.message);
-};
-
-
+  /**Used to sign with google*/
+  const signInWithGoogle = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: process.env.NEXT_PUBLIC_REDIRECT_URL,
+      },
+    });
+    if (error) console.error('OAuth sign-in error:', error.message);
+  };
 
   return (
     <div className='flex flex-col items-center justify-center h-screen'>
       <div className='flex flex-col items-center border rounded-2xl p-8'>
-        <Image src ={'/imagebg.png'} alt ='logo' 
-        width={100}
-        height={100}
-        className='w-[180px]'/>
+        <Image src={'/imagebg.png'} alt='logo' width={100} height={100} className='w-[180px]' />
         <div className='flex flex-col items-center '>
-           <Image src ={'/login2.svg'} alt ='logo' 
+          <Image
+            src={'/login2.svg'}
+            alt='logo'
             width={600}
             height={400}
-            className='w-[400px] h-[250px] rounded-2xl'/>
-            <h2 className='text-2xl font-bold text-center mt-5'>Welcome to RecruAI</h2>
-            <p className='text-grey-500 text-center'>Sign In With Google Athentication</p>
-            <Button onClick={signInWithGoogle} className='mt-7 w-full'>Login with Google</Button>
+            className='w-[400px] h-[250px] rounded-2xl'
+          />
+          <h2 className='text-2xl font-bold text-center mt-5'>Welcome to RecruAI</h2>
+          <p className='text-grey-500 text-center'>Sign In With Google Authentication</p>
+          <Button onClick={signInWithGoogle} className='mt-7 w-full'>
+            Login with Google
+          </Button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
