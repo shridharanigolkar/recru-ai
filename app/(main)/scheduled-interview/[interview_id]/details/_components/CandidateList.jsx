@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import { Button } from '@/components/ui/button'
+import CandidateFeedbackDialog from './CandidateFeedbackDialog'
 
 function CandidateList({candidateList}) {
   return (
@@ -15,8 +16,8 @@ function CandidateList({candidateList}) {
                             <h2 className='text-sm text-gray-500'>Completed On:{moment(candidate?.created_at).format('DD MM yyyy')}</h2>
                         </div>
                  </div>
-                
-                <Button className={'text-primary '} variant={'outline'} >View Report</Button>
+                 
+                 <CandidateFeedbackDialog  candidate={candidate}/>
             </div>
         ))}
 
