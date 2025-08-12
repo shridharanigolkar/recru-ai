@@ -16,7 +16,7 @@ Recru AI is an intelligent platform designed to assist recruiters in conducting 
 - **VAPI** — AI interview handling interface
 - **Gemini Pro Model** — AI model powering interviews
 
-## Getting Started
+
 
 ### Prerequisites
 
@@ -25,9 +25,5 @@ Recru AI is an intelligent platform designed to assist recruiters in conducting 
 - Supabase account and project setup
 - VAPI credentials for AI interview integration
 
-### Installation
 
-1. Install dependencies:
-   ```bash
-   npm install
   
