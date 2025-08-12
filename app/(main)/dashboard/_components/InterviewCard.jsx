@@ -13,7 +13,7 @@ function InterviewCard({ interview ,  viewDetail =false}) {
 const { addToast } = useToast();
   const copyLink = () => {
     navigator.clipboard.writeText(url);
-    addToast('Link copied to clipboard!');
+    toast('Link copied to clipboard!');
   };
 
   const onSend = () => {

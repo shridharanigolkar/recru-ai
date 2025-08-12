@@ -22,7 +22,7 @@ export default function SettingsPage() {
       const authUser = authData?.user;
 
       if (!authUser) {
-          addToast('No user first login')
+          toast('No user first login')
         router.push("/"); 
       
         return;

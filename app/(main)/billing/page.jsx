@@ -105,7 +105,7 @@ export default function BillingPage() {
   }
 
   const setclick = () =>{
-    addToast('Sorry you cannot do Payment now');
+    toast('Sorry you cannot do Payment now');
   }
   return (
     <div className="p-8 max-w-6xl mx-auto">
